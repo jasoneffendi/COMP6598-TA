@@ -29,11 +29,6 @@ public class BoardColumnController {
     @Autowired
     private BoardTaskRepository boardTaskRepository;
 
-//    @GetMapping("/boardColumn")
-//    public Page<BoardColumn> getAllBoardColumns(Pageable pageable) {
-//        return boardColumnRepository.findAll((pageable));
-//    }
-
     @GetMapping("/boardColumn")
     public List<BoardColumnResponse> getAllBoardColumns() {
         List<BoardColumnResponse> responseList =  new ArrayList<>();
@@ -81,6 +76,7 @@ public class BoardColumnController {
 
     @PutMapping("/boardColumn/{boardColumnId}")
     public BoardColumn updateBoardColumn(@PathVariable Long boardColumnId, @Valid @RequestBody BoardColumn postRequest) {
+        // Not used yet, can be used to edit column name
         return boardColumnRepository.findById(boardColumnId).map(boardColumn -> {
             boardColumn.setTitle(postRequest.getTitle());
             return boardColumnRepository.save(boardColumn);

@@ -28,12 +28,14 @@ public class BoardTaskController {
 
     @GetMapping("/boardColumn/{boardColumnId}/boardTasks")
     public List<BoardTask> getAllBoardTaskById(@PathVariable (value = "boardColumnId") Long boardColumnId) {
+        // Not used yet, can be used to fetch tasks in column modal or something
         return boardTaskRepository.findByBoardColumnId(boardColumnId);
     }
 
     @PostMapping("/boardColumn/{boardColumnId}/boardTasks")
     public BoardTask createBoardTask(@PathVariable (value = "boardColumnId") Long boardColumnId,
                                  @Valid @RequestBody BoardTask boardTask) {
+        // TODO: Refactor to instead take boardColumnId in request payload
         return boardColumnRepository.findById(boardColumnId).map(boardColumn -> {
             boardTask.setBoardColumn(boardColumn);
             return boardTaskRepository.save(boardTask);
@@ -44,7 +46,6 @@ public class BoardTaskController {
     public BoardTask updateComment(
             @PathVariable (value = "boardTaskId") Long boardTaskId,
                                  @Valid @RequestBody BoardTaskRequest boardTaskRequest) {
-
         Long targetBoardColumnId = boardTaskRequest.getBoardColumnId();
         if(targetBoardColumnId != null && !boardColumnRepository.existsById(targetBoardColumnId)) {
             throw new ResourceNotFoundException("Target BoardColumn " + targetBoardColumnId + " not found");
@@ -63,6 +64,7 @@ public class BoardTaskController {
 
     @DeleteMapping("/boardTasks/{boardTaskId}")
     public ResponseEntity<?> deleteComment(@PathVariable (value = "boardTaskId") Long boardTaskId) {
+        // TODO: Check if there are tasks associated to column, if yes, do not delete.
         return boardTaskRepository.findById(boardTaskId).map(boardTask -> {
             boardTaskRepository.delete(boardTask);
             return ResponseEntity.ok().build();
