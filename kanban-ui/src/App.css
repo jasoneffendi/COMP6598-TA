@@ -1,0 +1,9 @@
+.App {
+  text-align: center;
+}
+
+.app__header {
+  text-align: center;
+  font-weight: 600;
+  font-size: 32px;
+}

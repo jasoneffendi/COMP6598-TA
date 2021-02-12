@@ -1,0 +1,48 @@
+.column-header__input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.column-header__header {
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+}
+
+.column-header__task-count {
+    font-weight: bold;
+    color: red;
+}
+
+.column-header__form {
+    padding: 15px;
+    background-color: #fff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.column-header__form-toggle {
+    background-color: #fff;
+    padding: 5px;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.column-header__form-cancel {
+    background-color: #eee;
+    padding: 5px;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.column-header__form-submit {
+    background-color: #eee;
+    padding: 5px;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+textarea {
+    font-family: unset;
+}
